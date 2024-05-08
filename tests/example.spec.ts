@@ -1,18 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+test('test', async ({ page }) => {
+  await page.goto('https://tevis.ekom21.de/stdar/?rs');
+  await page.getByLabel('Fahrerlaubnisbehörde').click();
+  await page.getByLabel('Cookie-Verwendung akzeptieren').click();
+  await page.getByRole('tab', { name: 'Erteilung/Ersatz/Umtausch' }).click();
+  await page.getByLabel('Erhöhen der Anzahl des Anliegens Antrag Umschreibung einer ausländischen').click();
+  await page.getByLabel('Weiter', { exact: true }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByLabel('Bürger- und Ordnungsamt (').click();
+  await expect(page.getByRole('heading', { name: 'Kein freier Termin verfügbar' })).toBeVisible();
 });
